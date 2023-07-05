@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const choices = ['rock', 'paper', 'scissors']
+
+        function computerSelection() {
+            let computer = Math.floor(Math.random() * choices.length);
+            return choices[computer];
+        }
+  
+        function playerSelection() {
+            let player = prompt('Enter your choice: Rock, Paper, Scissors or Random').toLowerCase();
+
+            if (player === 'rock' || player === 'paper' || player === 'scissors') {
+                return player;
+                } else if (player === 'random') {
+                let player = Math.floor(Math.random() * choices.length);
+                return choices[player];
+                } else {
+                return playerSelection();
+                }
+            }
+
+        function runGame() {
+            let playerWins = 0;
+            let computerWins = 0;
+            let result = '';
+            let game = ' ';
+
+            while (playerWins < 3 && computerWins < 3) {
+
+                let playerChoice = playerSelection();
+                let computerChoice = computerSelection();
+
+                if (playerChoice === computerChoice) {
+                result = "It's a tie!";
+                } else if (
+                (playerChoice === 'rock' && computerChoice === 'scissors') ||
+                (playerChoice === 'paper' && computerChoice === 'rock') ||
+                (playerChoice === 'scissors' && computerChoice === 'paper')
+                ) {
+                result = 'You win the round!';
+                } else {
+                result = 'Computer wins the round!';
+                }
+
+                if (result === 'You win the round!') {
+                playerWins = playerWins + 1;
+                } else if (result === 'Computer wins the round!') {
+                computerWins = computerWins + 1;
+                } else
+                
+                console.log(`Player chooses: ${playerChoice}`);
+                console.log(`Computer chooses: ${computerChoice}`);
+                console.log(result);
+                console.log(`Score: ${playerWins} - ${computerWins}`);
+            }
+            
+            if (playerWins > computerWins) {
+                game = 'You win the game!'
+            } else {
+                game = 'Computer wins the game!'
+            }
+    
+            console.log(game);
+        }
+
+        runGame();
+        let i = 0;
+        while (i === 0) {
+            let retry = prompt('Would you like to play again? (Yes/No)').toLowerCase();
+            if (retry === 'yes') {
+            runGame();
+            } else if (retry === 'no') {
+            console.log('See you next time!')
+            i = i + 1;
+            } else;
+        }
+            
+    </script>
+</body>
+</html>
